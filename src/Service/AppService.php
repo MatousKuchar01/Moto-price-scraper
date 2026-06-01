@@ -11,6 +11,6 @@ class AppService
      */
     public static function getScrapedSitesURL(): array
     {
-        return [AppEnum::SITE_BAZOS];
+        return [AppEnum::SITE_BAZOS->value];
     }
 }
