@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Model\Scraper;
+use App\Service\AppService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,8 +18,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 ]
 class ScrapeBikesCommand extends Command
 {
-    public function __construct(private Scraper $scraper)
-    {
+    public function __construct(
+        private Scraper $scraper,
+        private AppService $service,
+    ) {
         parent::__construct();
     }
 
@@ -62,6 +65,8 @@ class ScrapeBikesCommand extends Command
 
             $radky[] = [$poradi++, $nadpis, $cena, $url];
         }
+
+        $this->service->seradit($radky);
 
         $io->section("Nalezené inzeráty:");
         $io->table(["#", "Název motorky", "Cena", "Odkaz (URL)"], $radky);
