@@ -24,13 +24,12 @@ class ScrapeBikesCommand extends Command
         InputInterface $input,
         OutputInterface $output,
     ): int {
-        dd($this->scraper->scrape());
+        for ($i = 0; $i <= 100; $i += 20) {
+            $pageParam = $i === 0 ? "" : (string) $i;
+            dump($this->scraper->scrapeBazos($pageParam));
+        }
+
         $io = new SymfonyStyle($input, $output);
-
-        // 1. Interaktivní vstup
-        $brand = $io->ask("Jakou značku motorky hledáme?", "Yamaha");
-
-        $io->success("Hotovo!");
         return Command::SUCCESS;
     }
 }

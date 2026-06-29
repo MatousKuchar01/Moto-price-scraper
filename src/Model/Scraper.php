@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Enum\AppEnum;
 use App\Service\AppService;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
@@ -24,14 +25,14 @@ class Scraper
     }
 
     /**
-     *
+     * @return array
      */
-    public function scrape()
+    public function scrapeBazos(string $pageCount = ""): array
     {
         $browser = $this->createHttpBrowser();
         $crawler = $browser->request(
             "GET",
-            AppService::getScrapedSitesURL()[0],
+            AppService::getBazosURL($pageCount)[0],
         );
 
         $motorky = [];
@@ -41,12 +42,15 @@ class Scraper
             ->each(function ($node) use (&$motorky) {
                 $nadpisNode = $node->filter("h2.nadpis");
                 $cenyNode = $node->filter('span[translate="no"]');
+                $urlNode =
+                    AppEnum::PREFIX_BAZOS->value .
+                    $node->filter("a")->attr("href");
 
                 if ($nadpisNode->count() > 0 && $cenyNode->count() > 0) {
                     $nadpisy = $nadpisNode->text();
                     $ceny = $cenyNode->text();
 
-                    $motorky[$nadpisy] = $ceny;
+                    $motorky[$nadpisy] = $ceny . " - " . $urlNode;
                 }
             });
 

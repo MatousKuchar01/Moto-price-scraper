@@ -9,8 +9,14 @@ class AppService
     /**
      * @return array
      */
-    public static function getScrapedSitesURL(): array
+    public static function getBazosURL(string $pageCount = ""): array
     {
-        return [AppEnum::SITE_BAZOS->value];
+        $url = AppEnum::PREFIX_BAZOS->value . "/" . $pageCount;
+
+        if ($pageCount != "") {
+            $url .= "/?strana=" . $pageCount;
+        }
+
+        return [$url];
     }
 }
