@@ -2,7 +2,7 @@
 
 Mini CLI aplikace postavená v **Symfony**, která slouží ke scrapingu dat o cenách motocyklů z Bazoš.cz.
 
-[Screencast From 2026-07-04 22-03-57.webm](https://github.com/user-attachments/assets/92d5ee73-1f5a-4fe3-976f-cd9322c1e567)
+[Screencast From 2026-07-04 22-40-23.webm](https://github.com/user-attachments/assets/f7bb1e39-9dfe-4c29-94f9-512044578ff5)
 
 Dependencies (PHP, Symfony, Composer, Symfony CLI): 
 
