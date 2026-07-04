@@ -13,3 +13,7 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
 sudo apt install symfony-cli -y
+
+Jak spustit scrape: 
+
+v rootu moto_scraper spustíte: `php bin/console app:scrape-bikes`
