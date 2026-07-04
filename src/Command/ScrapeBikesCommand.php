@@ -61,9 +61,11 @@ class ScrapeBikesCommand extends Command
         $poradi = 1;
 
         foreach ($vsechnyMotorky as $nadpis => $detaily) {
-            [$cena, $url] = explode(" - ", $detaily, 2);
+            [$cenaRaw, $url] = explode(" - ", $detaily, 2);
 
-            $radky[] = [$poradi++, $nadpis, $cena, $url];
+            $cenaColored = $this->service->color($cenaRaw);
+
+            $radky[] = [$poradi++, $nadpis, $cenaColored, $url];
         }
 
         $this->service->seradit($radky);
