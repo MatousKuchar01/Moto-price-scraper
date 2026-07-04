@@ -17,3 +17,5 @@ sudo apt install symfony-cli -y
 Jak spustit scrape: 
 
 v rootu moto_scraper spustíte: `php bin/console app:scrape-bikes`
+
+Počet scrapovaných stran se dá velmi jednoduše nakonfigurovat.
